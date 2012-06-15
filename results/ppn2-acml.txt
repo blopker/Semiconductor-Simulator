@@ -1,0 +1,125 @@
+Config loaded from: semiconductor.conf
+error: 154.201269 at iteration: 0
+Memory: 2192.000000
+error: 77.305519 at iteration: 1
+Memory: 2120.000000
+error: 0.000000 at iteration: 2
+Memory: 2592.000000
+error: 0.000000 at iteration: 3
+Memory: 2588.000000
+Time: 0.440000 seconds
+Problem Size: 168
+Run 100e-8 took 0.779680967331seconds
+
+Config loaded from: semiconductor.conf
+error: 319.624198 at iteration: 0
+Memory: 2004.000000
+error: 160.327002 at iteration: 1
+Memory: 1932.000000
+error: 0.000000 at iteration: 2
+Memory: 2136.000000
+error: 0.000000 at iteration: 3
+Memory: 2088.000000
+Time: 1.970000 seconds
+Problem Size: 334
+Run 200e-8 took 1.02173686028seconds
+
+Config loaded from: semiconductor.conf
+error: 486.959280 at iteration: 0
+Memory: 1916.000000
+error: 244.305519 at iteration: 1
+Memory: 2108.000000
+error: 0.000000 at iteration: 2
+Memory: 2044.000000
+error: 0.000000 at iteration: 3
+Memory: 1996.000000
+Time: 5.880000 seconds
+Problem Size: 502
+Run 300e-8 took 2.9808409214seconds
+
+Config loaded from: semiconductor.conf
+error: 652.361121 at iteration: 0
+Memory: 1920.000000
+error: 327.316260 at iteration: 1
+Memory: 2212.000000
+error: 0.000001 at iteration: 2
+Memory: 2084.000000
+error: 0.000000 at iteration: 3
+Memory: 2252.000000
+Time: 12.270000 seconds
+Problem Size: 668
+Run 400e-8 took 6.28333997726seconds
+
+Config loaded from: semiconductor.conf
+error: 819.715707 at iteration: 0
+Memory: 2148.000000
+error: 411.305518 at iteration: 1
+Memory: 2180.000000
+error: 0.000000 at iteration: 2
+Memory: 2052.000000
+error: 0.000000 at iteration: 3
+Memory: 2220.000000
+Time: 22.960000 seconds
+Problem Size: 836
+Run 500e-8 took 11.9316728115seconds
+
+Config loaded from: semiconductor.conf
+error: 985.110781 at iteration: 0
+Memory: 2052.000000
+error: 494.312679 at iteration: 1
+Memory: 2080.000000
+error: 0.000000 at iteration: 2
+Memory: 2216.000000
+error: 0.000000 at iteration: 3
+Memory: 2088.000000
+error: 0.000000 at iteration: 4
+Memory: 2256.000000
+Time: 39.990000 seconds
+Problem Size: 1002
+Run 600e-8 took 20.9347701073seconds
+
+Config loaded from: semiconductor.conf
+error: 1152.471907 at iteration: 0
+Memory: 2012.000000
+error: 578.305518 at iteration: 1
+Memory: 2308.000000
+error: 0.000001 at iteration: 2
+Memory: 2180.000000
+error: 0.000000 at iteration: 3
+Memory: 2316.000000
+error: 0.000000 at iteration: 4
+Memory: 2220.000000
+Time: 62.360000 seconds
+Problem Size: 1170
+Run 700e-8 took 32.5727488995seconds
+
+Config loaded from: semiconductor.conf
+error: 1317.863627 at iteration: 0
+Memory: 2056.000000
+error: 661.310890 at iteration: 1
+Memory: 2348.000000
+error: 0.000001 at iteration: 2
+Memory: 2220.000000
+error: 0.000000 at iteration: 3
+Memory: 2356.000000
+error: 0.000000 at iteration: 4
+Memory: 2260.000000
+Time: 91.460000 seconds
+Problem Size: 1336
+Run 800e-8 took 47.9375760555seconds
+
+Config loaded from: semiconductor.conf
+error: 1485.228032 at iteration: 0
+Memory: 2216.000000
+error: 745.305518 at iteration: 1
+Memory: 2248.000000
+error: 0.000001 at iteration: 2
+Memory: 2384.000000
+error: 0.000000 at iteration: 3
+Memory: 2256.000000
+error: 0.000000 at iteration: 4
+Memory: 2160.000000
+Time: 131.490000 seconds
+Problem Size: 1504
+Run 900e-8 took 68.7223501205seconds
+
