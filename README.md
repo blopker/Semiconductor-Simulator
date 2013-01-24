@@ -1,6 +1,6 @@
 Parallel Diode Simulation
 =============
-Kuang Chung Wang, Ravi Shivaraman, Karl Bo Lopker
+Karl Bo Lopker, Kuang Chung Wang, Ravi Shivaraman
 
 ###[Project website](http://semiconductor.bluegouda.com/)
 
