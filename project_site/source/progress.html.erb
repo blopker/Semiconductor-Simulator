@@ -1,0 +1,126 @@
+---
+title: "Progress Report"
+---
+
+<h3>Status</h3>
+<article>
+	<div class="centercolumn">
+	
+	<p>
+		After investigating the problem further, we have separated it into two parts. The first part is to calculate a nonlinear Poisson equation. The Poisson equation gives us a potential profile. We then use this profile to then calculate the quasi-Fermi levels. Iteration is then done over these steps until convergence.
+	</p>
+
+	<p>
+		We currently have these parts coded sequentially in Matlab. For the final project we will be converting the Matlab code to C/C++ then use CILK to parallelize. In order to avoid redoing work that others have done we will be using LAPACK for solving linear systems and instead focus on parallelizing the unique parts of our code.
+	</p>
+	
+	</div>
+</article>
+<div class="divider"></div>
+<h3>Nonlinear Poisson Equation</h3>
+<article>
+	<div class="firstcolumn">
+	<p>
+		In each iteration of the nonlinear Poisson equation we do the following:
+	</p>
+	<div class='eqn'> 
+		<div lang='latex'>n=n_i exp(\frac{E_{fn}}{k_b*T}) exp(\frac{-q V}{k_b T})\\</div>
+	<p>Equation. 1</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>p=n_i exp(\frac{-E_{fn}}{k_b*T}) exp(\frac{q V}{k_b T})\\</div>
+	<p>Equation. 2</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>\{\nabla^2+\frac{q^2 n_i}{\epsilon k_B T} (-n+p)\}\delta V=-\nabla^2 V+\frac{q}{\epsilon} (-n+p-N_b)\\</div>
+	<p>Equation. 3</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>N_b=N_a-N_d;\\</div>
+	<p>Equation. 4</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>V=V+\delta V</div>
+	<p>Equation. 5</p>
+	</div>
+	<p>
+		where beside <span lang='latex'>$k_b$, $T$, $q$, $\epsilon$, </span>all the others are vetors with size N.
+	</p>
+	<p>
+		The grid size in the system is decided by two times the Debye length:
+	</p>	
+	<div class='eqn'> 
+		<div lang='latex'>dx=\sqrt{\frac{\epsilon k_b T}{q^2N}}</div>
+		<p>Equation. 6</p>
+	</div>
+	
+	
+	</div>
+	<div class="secondcolumn">
+		<p>
+		We simulate a p-n junction with p-type with dopants <span lang='latex'>$N_p=N_a=1e22 cm^{-3}$.</span> The length of the device is 500 nm n-type and 500 p-type. The material parameter is Si with 1.1 eV of bandgap.   
+	</p>
+	<p>
+		The answer doesn't converge following the above equations. However, if we ignore the second part of the Eqn. 3 the equation become the following and it converges quite well as shown in Fig 1.
+	</p>
+	<fig>
+		<%= image_tag 'result.png', :href => 'result.png' %>
+		<p>Fig. 1 The band diagram.</p>
+	</fig>
+	</div>
+</article>
+<div class="divider"></div>
+
+<h3>Quasi-Fermi Level</h3>
+<article>
+	<div class="firstcolumn">
+	<p>
+		Second Step: The Poisson equation yields the potential profile and gives initial values for the concentrations. Under an application of a voltage bias, current flows in the device. The current in the device can be computed by taking the gradient of the Fermi energies. The second step computes the Quasi Fermi levels. Convergence has been achieved in calculation of the Quasi Fermi levels and the current density is calculated. The equations employed to perform these calculation and results produced are shown below.
+	</p>
+	<p>The following tridiagonal systems are solved in 1-dimension for the electrons and holes respectively:</p>
+	<div class='eqn'> 
+		<div lang='latex'>a_n(i-\frac{1}{2})\Phi_n(i-1) - (a_n(i-\frac{1}{2})+a_n(i+\frac{1}{2}))\Phi_n(i) + a_n(i+\frac{1}{2})\Phi_n(i+1)=0 \\</div>
+	<p>Equation. 1</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>a_p(i-\frac{1}{2})\Phi_p(i-1) - (a_p(i-\frac{1}{2})+a_p(i+\frac{1}{2}))\Phi_p(i) + a_p(i+\frac{1}{2})\Phi_p(i+1)=0 \\</div>
+	<p>Equation. 2</p>
+	</div>
+	<p>Here we have not taken into account generation-recombination terms. The co-efficients <span lang='latex'>$a_n$ and $a_p$</span> are given by</p>
+	<div class='eqn'> 
+		<div lang='latex'>a_n = n_i \mu_n exp(\frac{-q V}{k_B T})\\</div>
+	<p>Equation. 3</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>a_p = -n_i \mu_p exp(\frac{q V}{k_B T})\\</div>
+	<p>Equation. 4</p>
+	</div>
+	<p>The intrapolation is done carefully inbetween the grid points. The variables <span lang='latex'>$\Phi_n$ and $\Phi_p$</span> are called Slotboom variables and are repectively given by: </p>
+	<div class='eqn'> 
+		<div lang='latex'>\Phi_n = exp(\frac{E_Fn}{k_B T})\\</div>
+	<p>Equation. 5</p>
+	</div>
+	<div class='eqn'> 
+		<div lang='latex'>\Phi_p = exp(\frac{-E_Fp}{k_B T})\\</div>
+	<p>Equation. 6</p>
+	</div>
+	<p>
+		Figure. 1  shows the results obtained thus far. The quasi-fermi levels are split and the split is equal to the bias applied. These values will be fed into the Poisson equation to refine the potential. 
+	</p>
+	</div>
+	<div class="secondcolumn">
+	<p>
+		The steps to be taken further are outlined below:
+		1.  The potential profiles will be generated from data taken from Atom Probe experiments. (shown in Figure. 2) The composition profile derived from these experiments will be translated into a potential profile and similar calculations performed to understand the distribution of current and charge density.
+		2. 2. All these calculations thus far have been done in MATLAB serially. Parallelization will be achieved using CILK. 
+	</p>	
+	<fig>
+		<%= image_tag 'figure1.jpg', :href => 'figure1.jpg' %>
+		<p>Fig. 1 Quasi Fermi Levels under bias.</p>
+	</fig>
+	<fig>
+		<%= image_tag 'figure2.png', :href => 'figure2.png' %>
+		<p>Fig. 2 Atom Probe Data.</p>
+	</fig>
+	</div>
+</article>

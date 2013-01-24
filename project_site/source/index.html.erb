@@ -1,0 +1,88 @@
+---
+title: "Proposal"
+---
+
+<h3>Motivation and Scope</h3>
+<article>
+	<div class="firstcolumn">
+	<p>
+		The operation of a semiconductor device depends on how charge carriers; viz. electrons and holes, respond to applied, built-in and scattering potentials. For much of the past 40 years, as semiconductor devices have transitioned from point-contact transistors to megabit memories, the phenomenological drift-diffusion model – charges drift under applied field and diffuse under a concentration gradient – has served as the backbone of device analysis. 
+	</p>
+	<p>
+		At the very fundamental level electrons & holes in semiconductors are quantum mechanical particles whose wave functions are determined by the crystal potential & applied bias. However, at a macroscopic level the electron and hole behavior can be phenomenologically modeled by considering the average of an enormous number of nearly chaotic trajectories. Consideration of such (thermodynamic)
+	</p>
+	<fig>
+		<%= image_tag 'proposalimg1.png', :href => 'proposalimg1.png' %>
+		<p>Fig. 1</p>
+	</fig>
+	</div>
+	<div class="secondcolumn">
+	<p>ensembles naturally leads to the definition of system response functions like diffusivity and mobility. The electron/hole behavior can be well modeled by a drift-diffusion equation which is discussed in the next section. </p>
+	<p>
+		An important application of these drift-diffusion solvers lies in understanding carrier transport in light emitting devices. A light emitting device is a p-n junction diode operated in forward bias. The electrons and holes travel in opposing directions towards the depletion region where a quantum well is strategically placed. The carriers fall into this well and are confined by the potential barriers. This confinement enhances carrier recombination leading to a higher emission efficiency. The potential landscape in which the charge carrier travels thus decides where it will eventually end up. The potential landscape is influence by the local composition. A varying potential landscape generates a field which leads to carrier “drift”. Moreover, since the p-region of the diode has an excess of holes and the n-region of the diode has excess electrons there is a variation in the chemical potential – this concentration gradient leads to diffusion. 
+	</p>
+	<p>
+		A characterization technique called Atom Probe Tomography enables one to obtain details of local composition fluctuations; which in turn influence the potential landscape. Thus the simulation of the final charge density distribution profile from an experimentally obtained composition (elemental distribution) in the Light emitting device is the goal of this investigation. 
+	</p>
+	</div>
+</article>
+<div class="divider"></div>
+<h3>Methodology</h3>
+<article>
+	<div class="firstcolumn">
+	<p>
+		Three equations are involved in the Drift-Diffusion Model.
+	</p>
+	<div class='eqn'> 
+	<div lang='latex'>\nabla^2V=\frac{q}{\epsilon}(n_i exp(\frac{E_{fn}-qV}{k_BT}-n_i exp(\frac{-Efp+qV}{k_BT}+N_B)</div>
+	<p>Equation. 1</p>
+	</div>
+	<p>
+		This is the Poisson equation which describe the relationship between the charge (right) and the potential(left) derived from coulomb potential. However, this is a non-linear equation of V, therefore needs to be turned into linear form and solved iteratively.  
+	</p>
+	<div class='eqn'> 
+		<div lang='latex'>J_n-R_n-G_n=0=\frac{\partial n}{\partial t}</div>
+		<div lang='latex'>J_p-R_p-G_p=0=\frac{\partial p}{\partial t}</div>
+		<p>Equation. 2</p>
+	</div>
+	<p>
+		This is the continuity equation where the J stands for current, which arises from the drift part and the diffusion part. And since we are solving the steady state, the charge distribution will be constant with time.
+	</p>
+
+	
+	</div>
+	<div class="secondcolumn">
+	<p>
+		Total variables in the systems are n, p and V. However, due to Fermi-Dirac distribution, the n and p can be expressed with: 
+	</p>
+	<div class='eqn'> <div lang='latex'>n=n_i exp( \frac{E_{fn}-qV}{k_BT})</div> <p>Equation. 3</p></div> 
+	<p>
+		Therefore, there are total three variables Efn, Efp and V. However, due to the convergence issue, three other variables ϕn, ϕp and V should be used. 
+	</p>
+		<h4>Problem Size</h4>
+	<p>
+		To estimate the size of the problem, the ∆x is equal to Debye length LD.
+	</p>
+	<div class='eqn'> 
+		<div lang='latex'>L_D=\sqrt{\frac{\epsilon k_B T}{q^2 N}}</div>
+		<p>Equation. 4</p>
+	</div>
+	<p>
+		Therefore, it is in the range of 100A. Given a 1D problem with 10000A size of LED chip, there will need to be 1000 points. The 3D problem will scale to 10^9 points. However, if the composition of LED is changing with the dimension of atomic size(3.11A), the 3D problem size increases to 10^12. 
+	</p>
+	</div>
+</article>
+<div class="divider"></div>
+<!-- <h3>The Implementation</h3>
+<article>
+	<div class="firstcolumn">
+	<p>
+		Donec luctus tempus pharetra. Proin eu urna id nunc feugiat tempor ac non urna. Morbi aliquet consequat vulputate. Ut at urna arcu, ut molestie libero. Praesent malesuada sodales arcu in varius. Aenean rhoncus, arcu vel vehicula luctus, nulla sapien convallis ligula, nec ultrices tellus eros non odio. Mauris lorem massa, malesuada adipiscing viverra et, sodales non nulla. Ut lobortis, sapien id egestas gravida, libero dui posuere enim, eget tempus nisl urna vitae eros. Etiam id posuere sapien. Donec ultrices semper magna ut fringilla. Etiam bibendum augue non quam posuere dictum. Cras ut eleifend nisi. Suspendisse scelerisque dapibus eros, eget aliquam augue rhoncus quis.
+	</p>
+	</div>
+	<div class="secondcolumn">
+	<p>				
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor pulvinar condimentum. Nullam laoreet luctus orci, quis lobortis tellus porta a. Phasellus accumsan, nisi vel faucibus adipiscing, arcu justo blandit ante, vitae porta risus eros vel ipsum. Quisque rhoncus blandit leo, ut rutrum urna consectetur non. Ut sit amet vehicula purus. Maecenas porttitor massa eget nisi varius sit amet imperdiet dui suscipit. Nunc in lectus vestibulum lectus consectetur suscipit vel eget nisl. Nullam ultricies pulvinar interdum.
+	</p>
+	</div> -->
+</article>
