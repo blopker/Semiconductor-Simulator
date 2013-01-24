@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 middleman build
-rsync -ahvc --delete build/* gouda@blopker.com:public/production/semiconductor
+rsync -ahvc --delete build/* gouda@blopker.com:public/dev/semiconductor
